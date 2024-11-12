@@ -1,0 +1,40 @@
+<div class="bg-gradient-to-r from-green-400 to-blue-400 p-4">
+  <h2 class="text-2xl font-bold mb-4 text-white">Lista de Pedidos</h2>
+  <div class="grid grid-cols-1 gap-4">
+      <div class="bg-white shadow-lg rounded-lg p-4" *ngFor="let pedido of pedidos; let i = index">
+          <div class="flex justify-between items-center">
+              <h3 class="font-bold">Pedido {{ i + 1 }}</h3>
+              <div class="flex space-x-2">
+                  <button *ngIf="pedidoEnEdicion === i" (click)="guardarEdicion(i)" class="bg-blue-500 text-white p-2 rounded">Guardar</button>
+                  <button *ngIf="pedidoEnEdicion === i" (click)="cancelarEdicion()" class="bg-gray-500 text-white p-2 rounded">Cancelar</button>
+                  <button *ngIf="pedidoEnEdicion !== i" (click)="quitarPedido(i)" class="bg-red-500 text-white p-2 rounded">Quitar</button>
+                  <button *ngIf="pedidoEnEdicion !== i" (click)="terminarPedido(i)" class="bg-green-500 text-white p-2 rounded" [disabled]="pedido.terminado">Terminar</button>
+              </div>
+          </div>
+          <div class="mt-2">
+              <strong>Tamaño:</strong>
+              <ng-container *ngIf="pedidoEnEdicion === i; else tamanoTexto">
+                  <input type="text" [(ngModel)]="pedido.tamano" class="border p-1 rounded w-full" />
+              </ng-container>
+              <ng-template #tamanoTexto>{{ pedido.tamano }}</ng-template>
+          </div>
+          <div class="mt-2">
+              <strong>Número de Pizzas:</strong>
+              <ng-container *ngIf="pedidoEnEdicion === i; else numPizzasTexto">
+                  <input type="number" [(ngModel)]="pedido.numPizzas" class="border p-1 rounded w-full" />
+              </ng-container>
+              <ng-template #numPizzasTexto>{{ pedido.numPizzas }}</ng-template>
+          </div>
+          <div class="mt-2">
+              <strong>Ingredientes:</strong>
+              <ng-container *ngIf="pedidoEnEdicion === i; else ingredientesTexto">
+                  <input type="text" [(ngModel)]="pedido.ingredientes" class="border p-1 rounded w-full" />
+              </ng-container>
+              <ng-template #ingredientesTexto>{{ pedido.ingredientes.join(', ') }}</ng-template>
+          </div>
+          <div class="mt-2">
+              <strong>Subtotal:</strong> {{ pedido.subtotal | currency }}
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="bg-gradient-to-r from-green-500 to-blue-500 p-2">
+  <h2 class="text-2xl font-bold mb-4 text-white">🌟 !Pizzeria 420! 🌟</h2>
+  <div class="flex flex-row items-center space-x-4 mt-8">
+      <label for="nombre" class="text-white">🌈 Nombre:</label>
+      <input type="text" [(ngModel)]="nombre" class="border rounded p-1" required />
+
+      <label for="direccion" class="text-white">🏠 direccion:</label>
+      <input type="text" [(ngModel)]="direccion" class="border rounded p-1" required />
+
+      <label for="telefono" class="text-white">📞 Telefono:</label>
+      <input type="text" [(ngModel)]="telefono" class="border rounded p-1" required />
+  </div>
+
+  <div class="flex space-x-60">
+      <div class="w-64 p-4 border rounded-md mt-12 bg-yellow-200">
+          <label class="font-bold mb-2">🍕PIZZA :</label><br>
+          <div class="flex flex-col">
+              <button (click)="tamano = 'Chica'" class="mb-2 p-2 border rounded bg-green-300 hover:bg-green-400">🎉 LILLE $40</button>
+              <button (click)="tamano = 'Mediana'" class="mb-2 p-2 border rounded bg-blue-300 hover:bg-blue-400">💫 MEDIUM $80</button>
+              <button (click)="tamano = 'Grande'" class="mb-2 p-2 border rounded bg-red-300 hover:bg-red-400">✨ STOR $120</button>
+          </div>
+      </div>
+
+      <div class="w-64 p-4 border rounded-md mt-12 bg-pink-200">
+          <label class="font-bold mb-2">🌶️ TILFØJ FANTASTISKE INGREDIENSER:</label><br>
+          <div class="flex flex-col">
+              <button (click)="toggleIngrediente('Jamón', $event)" class="mb-2 p-2 border rounded bg-yellow-300 hover:bg-yellow-400">🥓 Skinke $10</button>
+              <button (click)="toggleIngrediente('Piña', $event)" class="mb-2 p-2 border rounded bg-yellow-300 hover:bg-yellow-400">🍍 Ananas $10</button>
+              <button (click)="toggleIngrediente('Champiñones', $event)" class="mb-2 p-2 border rounded bg-yellow-300 hover:bg-yellow-400">🍄 Champignon $10</button>
+          </div>
+      </div>
+
+      <div class="w-64 p-4 border rounded-md mt-12 bg-blue-200">
+          <label class="font-bold mb-2">🔢  PIZZAAS:</label>
+          <input type="number" [(ngModel)]="numPizzas" min="1" class="w-full mb-2 p-1 border rounded-md" />
+          <button (click)="guardarPedido()" class="w-full bg-red-500 hover:bg-red-700 text-white p-2 rounded-md">💾 Guardar</button>
+      </div>
+  </div>
+</div>
